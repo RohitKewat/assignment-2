@@ -64,25 +64,13 @@ router.put('/posts/:postId',async(req,res)=>{
    try{
         
        id = req.params.postId
-    //    post = postModel.findOne({_id : id});
-        await  postModel.findByIdAndUpdate(id,req.body,{ new: true },(err,updatedthings)=>{
+       const updateddata = await postModel.updateOne({_id : id},req.body)
+      res.status(200).json({
 
-        if(err){
-            res.status(400).json({
-                status : "failed",
-                message : err.message
-            })
-        }else{
-
-            res.status(200).json({
-                status:"succes",
-                updatedthings
-            })
-        }
-
-       })
-    
-
+        message : "success",
+        data : updateddata
+      })
+     
      
    }catch(e){
 

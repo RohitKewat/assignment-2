@@ -12,7 +12,7 @@ connection()
 app.post('/posts', (req, res, next) => {
 
     const token = req.headers.authorization
-    console.log(token);
+    // console.log(token);
     if (token) {
 
         jwt.verify(token,"secret" ,function (err, decoded) {
@@ -22,7 +22,7 @@ app.post('/posts', (req, res, next) => {
                     message: "Token is not valid "
                 })
             }
-            console.log(decoded);
+            // console.log(decoded);
             req.user = decoded.data
 
             next();
